@@ -1,0 +1,15 @@
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI.csprojResolveAssemblyReference.cache
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\MainWindow.g.cs
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\App.g.cs
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI_MarkupCompile.cache
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI_MarkupCompile.lref
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI.exe
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI.pdb
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\bin\Debug\ServiceGUI.exe.config
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\bin\Debug\ServiceGUI.exe
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\bin\Debug\ServiceGUI.pdb
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\MainWindow.baml
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI.g.resources
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI.Properties.Resources.resources
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI.csproj.GenerateResource.cache
+C:\Users\IEUser\source\repos\ServiceGUI\ServiceGUI\obj\Debug\ServiceGUI.csproj.CoreCompileInputs.cache

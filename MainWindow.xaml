@@ -1,0 +1,31 @@
+﻿<Window x:Class="ServiceGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServiceGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Settings">
+                <Grid x:Name="LayoutRoot"  Width="782" Height="388" Background="Lavender">
+                    <StackPanel x:Name="MyStackPanel" >
+                        <TextBlock x:Name="TB1" Text="Output Directory:" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 10, 0 ,10"/>
+                        <TextBlock x:Name="TB2" Text="Sourc Name: " FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
+                        <TextBlock x:Name="TB3" Text="Log Name:" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
+                        <TextBlock x:Name="TB4" Text="Thumbnail Name:" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
+                        <Button x:Name ="Remove" Content="Remove" Background="LightGoldenrodYellow" FontSize="20" Width="782" HorizontalAlignment="Left" Margin="0, 0, 0, 0">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <ListBox x:Name="urls" Height="144" HorizontalAlignment="Left" Width="782" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Logs" />
+        </TabControl>
+    </Grid>
+</Window>
