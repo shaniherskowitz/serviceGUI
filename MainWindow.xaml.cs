@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,27 +16,33 @@ using System.Windows.Shapes;
 
 namespace ServiceGUI
 {
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel vm = new ViewModel();
         public MainWindow()
         {
             InitializeComponent();
             UpdateFrame(TB1, "shani");
+            urls.ItemsSource = vm.ListPaths;
+            logInfo.ItemsSource = vm.ListCommands;
             
             
         }
 
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
-            TB1.Text = "hi";
+            vm.Remove(urls.SelectedItem.ToString());
         }
 
         private void UpdateFrame(TextBlock tb, string path)
         {
             tb.Text = "Output Directory: " + path;
         }
+
+       
     }
 }

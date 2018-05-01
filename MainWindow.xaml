@@ -15,17 +15,49 @@
                         <TextBlock x:Name="TB2" Text="Sourc Name: " FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
                         <TextBlock x:Name="TB3" Text="Log Name:" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
                         <TextBlock x:Name="TB4" Text="Thumbnail Name:" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
-                        <Button x:Name ="Remove" Content="Remove" Background="LightGoldenrodYellow" FontSize="20" Width="782" HorizontalAlignment="Left" Margin="0, 0, 0, 0">
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="Button.Click">
-                                </EventTrigger>
-                            </Button.Triggers>
-                        </Button>
-                        <ListBox x:Name="urls" Height="144" HorizontalAlignment="Left" Width="782" />
+                        <Button x:Name ="Remove" Content="Remove" Click="OnButtonClick" Background="LightGoldenrodYellow" FontSize="20" Width="782" HorizontalAlignment="Left" Margin="0, 0, 0, 0"/>
+
+                        <ListBox x:Name="urls" Height="144" HorizontalAlignment="Left" Width="782">
+                            <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Logs" />
+            <TabItem Header="Logs">
+                <Grid x:Name="log"  Width="782" Height="388" Background="Lavender">
+                    <DataGrid Name="logInfo" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Type" Width="100" IsReadOnly="True" Binding="{Binding Path=ID}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="INFO">
+                                                <Setter Property="Background" Value="LightGreen"/>
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="WARNING">
+                                                <Setter Property="Background" Value="LightYellow"/>
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="FAIL">
+                                                <Setter Property="Background" Value="Red"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Message" IsReadOnly="True" Binding="{Binding Path=Details}" Width="Auto">
+                              
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
