@@ -22,18 +22,26 @@ namespace ServiceGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ViewModel vm = new ViewModel();
+        
+        
+
         public MainWindow()
         {
+
             InitializeComponent();
-            UpdateFrame(TB1, "shani");
+            this.DataContext = new ViewModel();
+            
+
+            /*UpdateFrame(TB1, "shani");
             urls.ItemsSource = vm.ListPaths;
             logInfo.ItemsSource = vm.ListCommands;
-            
-            
+            Model m = new Model(vm);
+            m.ConnectToServer();*/
+
+
         }
 
-        private void OnButtonClick(object sender, RoutedEventArgs e)
+        /*private void OnButtonClick(object sender, RoutedEventArgs e)
         {
             vm.Remove(urls.SelectedItem.ToString());
         }
@@ -41,7 +49,7 @@ namespace ServiceGUI
         private void UpdateFrame(TextBlock tb, string path)
         {
             tb.Text = "Output Directory: " + path;
-        }
+        }*/
 
        
     }
