@@ -20,10 +20,7 @@ namespace ServiceGUI
 
         public ViewModel()
         {
-            
-            this.Settings = new SettingsViewModel();
-            this.Log = new LogsViewModel();
-            Model m = new Model(Settings, Log);
+           
             
         }
       

@@ -23,7 +23,7 @@ namespace ServiceGUI
         public Settings()
         {
             InitializeComponent();
-            //this.DataContext = new SettingsViewModel();
+            this.DataContext = new SettingsViewModel();
             
         }
         

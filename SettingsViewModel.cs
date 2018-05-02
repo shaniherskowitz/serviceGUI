@@ -16,32 +16,20 @@ namespace ServiceGUI
        
         //public ICommand RemoveCommand { get; private set; }
         private SettingsModel sm;
-        public ObservableCollection<string> ListPaths { get; set; }
-        public string Output { get; set; }
-        public string Source { get; set; }
-        public string LogName { get; set; }
-        public string ThumbName { get; set; }
-        public string selected { get; set; }
+        
 
         public SettingsViewModel()
         {
             //this.RemoveCommand = new DelegateCommand<object>(this.OnRemove, this.CanRemove);
 
             this.sm = new SettingsModel();
-
-
-            this.Output = "Output Directory:";
-            this.Source = "Sourc Name: ";
-            LogName = "Log Name:";
-            ThumbName = "Thumbnail Name:";
-            ListPaths = new ObservableCollection<string>();
-            ListPaths.Add("shani");
+            
         }
 
         public SettingsModel Sm
         {
-            get { return this.Sm; }
-            set { this.Sm = value; }
+            get { return this.sm; }
+            set { this.sm = value; }
         }
 
         private void OnButtonClick(object sender, RoutedEventArgs e)

@@ -76,7 +76,7 @@
     <Compile Include="SettingsModel.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="Connect.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="LogModel.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>

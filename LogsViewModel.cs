@@ -29,15 +29,19 @@ namespace ServiceGUI
 
     class LogsViewModel 
     {
-        public IList<CommandInfo> ListCommands { get; set; }
+        private LogModel log;
         
 
         public LogsViewModel()
         {
-            ListCommands = new List<CommandInfo>();
-            ListCommands.Add(new CommandInfo(MessageTypeEnum.FAIL.ToString(), "does this work?"));
+            log = new LogModel();
         }
+        public LogModel Log
+        {
+            get { return this.log; }
+            set { this.log = value; }
 
+        }
         
         
     }

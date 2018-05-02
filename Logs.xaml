@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
    
        <Grid x:Name="log"  Width="782" Height="388" Background="Lavender">
-            <DataGrid Name="logInfo" AutoGenerateColumns="False" ItemsSource="{Binding Path=ListCommands}">
+            <DataGrid Name="logInfo" AutoGenerateColumns="False" ItemsSource="{Binding Log.ListCommands}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Type" Width="100" IsReadOnly="True" Binding="{Binding Path=ID}">
                         <DataGridTextColumn.ElementStyle>

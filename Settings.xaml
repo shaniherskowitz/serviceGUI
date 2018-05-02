@@ -8,13 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="LayoutRoot"  Width="782" Height="388" Background="Lavender">
         <StackPanel x:Name="MyStackPanel" >
-            <TextBlock x:Name="output" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 10, 0 ,10" Text="{Binding Path = SettingsViewModel.Output}"/>
-            <TextBlock x:Name="TB2" Text="{Binding Path=Source}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
-            <TextBlock x:Name="TB3" Text="{Binding Path=LogName}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
-            <TextBlock x:Name="TB4" Text="{Binding Path=ThumbName}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
+            <TextBlock x:Name="output" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 10, 0 ,10" Text="{Binding Sm.Output}"/>
+            <TextBlock x:Name="TB2" Text="{Binding Sm.Source}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
+            <TextBlock x:Name="TB3" Text="{Binding Sm.LogName}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
+            <TextBlock x:Name="TB4" Text="{Binding Sm.ThumbName}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
             <Button x:Name ="Remove" Content="Remove" Background="LightGoldenrodYellow" FontSize="20" Width="782" HorizontalAlignment="Left" Margin="0, 0, 0, 0" />
 
-            <ListBox x:Name="urls" Height="144" HorizontalAlignment="Left" Width="782" ItemsSource="{Binding Path=ListPaths}">
+            <ListBox x:Name="urls" Height="144" HorizontalAlignment="Left" Width="782" ItemsSource="{Binding Sm.ListPaths}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
