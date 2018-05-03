@@ -11,20 +11,30 @@ namespace ServiceGUI
 
     class Connect
     {
- 
-        public Connect()
+        private static Connect instance;
+        private Stream stm;
+        private TcpClient tcpclnt;
+        private ASCIIEncoding asen;
+        private bool connected = false;
+
+        public static Connect Instance
         {
-            
-            
-            
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Connect();
+
+                }
+                return instance;
+            }
         }
 
-        public string ReadConnection(out int result)
+        private Connect()
         {
-
             try
             {
-                TcpClient tcpclnt = new TcpClient();
+                tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
 
                 tcpclnt.Connect("127.0.0.1", 8000);
@@ -34,7 +44,24 @@ namespace ServiceGUI
                 //Console.Write("Enter the string to be transmitted : ");
 
                 //String str = Console.ReadLine();
-                Stream stm = tcpclnt.GetStream();
+                stm = tcpclnt.GetStream();
+                asen = new ASCIIEncoding();
+                connected = true;
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Error..... " + e.StackTrace);
+
+            }
+        }
+
+
+        public string ReadConnection(out int result)
+        {
+
+            try
+            {
 
                 byte[] bb = new byte[100];
                 string output = "";
@@ -44,8 +71,8 @@ namespace ServiceGUI
                 //settings.Output = settings.Output +  " " + result;
 
                 result = 1;
-                tcpclnt.Close();
-                stm.Close();
+               // tcpclnt.Close();
+               // stm.Close();
                 return output;
             }
 
@@ -60,19 +87,7 @@ namespace ServiceGUI
         {
             try
             {
-                TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
 
-                tcpclnt.Connect("127.0.0.1", 8000);
-                // use the ipaddress as in the server program
-
-                Console.WriteLine("Connected");
-                //Console.Write("Enter the string to be transmitted : ");
-
-                //String str = Console.ReadLine();
-                Stream stm = tcpclnt.GetStream();
-
-                ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] ba = asen.GetBytes(path);
                 Console.WriteLine("Transmitting.....");
 
@@ -85,25 +100,28 @@ namespace ServiceGUI
                     output += Convert.ToChar(bb[i]).ToString();
                 //settings.Output = settings.Output +  " " + result;
 
-                
-                tcpclnt.Close();
-                stm.Close();
+
+               // tcpclnt.Close();
+               // stm.Close();
                 return output;
-            
+
 
             }
 
             catch (Exception e)
             {
                 Console.WriteLine("Error..... " + e.StackTrace);
-               
+
                 return "error";
             }
 
         }
-
     }
-
 }
+
+    
+
+
+
 
 

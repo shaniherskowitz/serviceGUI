@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommandEnum.cs" />
     <Compile Include="Commands\WeakEventHandlerManager.cs" />
     <Page Include="Logs.xaml">
       <SubType>Designer</SubType>

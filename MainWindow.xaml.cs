@@ -41,6 +41,8 @@ namespace ServiceGUI
 
         }
 
+        
+
         /*private void OnButtonClick(object sender, RoutedEventArgs e)
         {
             vm.Remove(urls.SelectedItem.ToString());
@@ -51,6 +53,6 @@ namespace ServiceGUI
             tb.Text = "Output Directory: " + path;
         }*/
 
-       
+
     }
 }

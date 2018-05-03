@@ -30,7 +30,7 @@ namespace ServiceGUI
 
         public void ConnectToServer()
         {
-            Connect c = new Connect();
+            Connect c = Connect.Instance;
             int result;
             Output = Output + c.WriteConnection("1");
             //Output = Output + c.ReadConnection(out result);

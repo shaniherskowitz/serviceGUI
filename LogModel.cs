@@ -12,8 +12,16 @@ namespace ServiceGUI
         public LogModel()
         {
             ListCommands = new List<CommandInfo>();
-            ListCommands.Add(new CommandInfo(MessageTypeEnum.FAIL.ToString(), "does this work?"));
+            //ListCommands.Add(new CommandInfo(MessageTypeEnum.FAIL.ToString(), "does this work?"));
+            ConnectToServer();
+        }
 
+        public void ConnectToServer()
+        {
+            Connect c = Connect.Instance;
+            string info = c.WriteConnection("2");
+            IList<string> eachPath = info.Split(';').Reverse().ToList<string>();
+            ListCommands.Add(new CommandInfo(MessageTypeEnum.FAIL.ToString(), eachPath[0]));
         }
 
 
