@@ -14,8 +14,8 @@ namespace ServiceGUI
     class ViewModel
     {
  
-        public SettingsViewModel Settings { get; set; }
-        public LogsViewModel Log { get; set; }
+        //public SettingsViewModel Settings { get; set; }
+        //public LogsViewModel Log { get; set; }
         
 
         public ViewModel()

@@ -16,6 +16,7 @@ namespace ServiceGUI
         private TcpClient tcpclnt;
         private ASCIIEncoding asen;
         private bool connected = false;
+        private object lockObj = new object();
 
         public static Connect Instance
         {
@@ -32,6 +33,7 @@ namespace ServiceGUI
 
         private Connect()
         {
+
             try
             {
                 tcpclnt = new TcpClient();
@@ -57,7 +59,7 @@ namespace ServiceGUI
         }
 
 
-        public string ReadConnection(out int result)
+        public string ReadConnection()
         {
 
             try
@@ -68,54 +70,54 @@ namespace ServiceGUI
                 int k = stm.Read(bb, 0, 100);
                 for (int i = 0; i < k; i++)
                     output += Convert.ToChar(bb[i]).ToString();
-                //settings.Output = settings.Output +  " " + result;
-
-                result = 1;
-               // tcpclnt.Close();
-               // stm.Close();
+      
                 return output;
             }
 
             catch (Exception e)
             {
-                result = 0;
+                
                 Console.WriteLine("Error..... " + e.StackTrace);
                 return "error";
             }
         }
         public string WriteConnection(string path)
         {
-            try
+            lock (lockObj)
             {
+                try
+                {
 
-                byte[] ba = asen.GetBytes(path);
-                Console.WriteLine("Transmitting.....");
+                    byte[] ba = asen.GetBytes(path);
+                    Console.WriteLine("Transmitting.....");
 
-                stm.Write(ba, 0, ba.Length);
+                    stm.Write(ba, 0, ba.Length);
 
-                byte[] bb = new byte[100];
-                string output = "";
-                int k = stm.Read(bb, 0, 100);
-                for (int i = 0; i < k; i++)
-                    output += Convert.ToChar(bb[i]).ToString();
-                //settings.Output = settings.Output +  " " + result;
-
-
-               // tcpclnt.Close();
-               // stm.Close();
-                return output;
+                    byte[] bb = new byte[1000];
+                    string output = "";
+                    int k = stm.Read(bb, 0, 1000);
+                    for (int i = 0; i < k; i++)
+                        output += Convert.ToChar(bb[i]).ToString();
+                    return output;
 
 
-            }
+                }
 
-            catch (Exception e)
-            {
-                Console.WriteLine("Error..... " + e.StackTrace);
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error..... " + e.StackTrace);
 
-                return "error";
+                    return "error";
+                }
             }
 
         }
+        public void CloseConnction()
+        {
+            tcpclnt.Close();
+            stm.Close();
+        }
+
     }
 }
 

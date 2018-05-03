@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceGUI
 {
-    class SettingsModel 
+    class SettingsModel
     {
         //public event PropertyChangedEventHandler PropertyChanged;
         public string Output { get; set; }
@@ -19,8 +19,8 @@ namespace ServiceGUI
 
         public SettingsModel()
         {
-            this.Output = "Output Directory: ";
-            this.Source = "Sourc Name: ";
+            Output = "Output Directory: ";
+            Source = "Sourc Name: ";
             LogName = "Log Name: ";
             ThumbName = "Thumbnail Name: ";
             ListPaths = new ObservableCollection<string>();
@@ -31,25 +31,34 @@ namespace ServiceGUI
         public void ConnectToServer()
         {
             Connect c = Connect.Instance;
-            int result;
-            Output = Output + c.WriteConnection("1");
-            //Output = Output + c.ReadConnection(out result);
-            Source = Source + c.WriteConnection("1");
-            LogName = LogName + c.WriteConnection("1");
-            ThumbName = ThumbName + c.WriteConnection("1");
-            string h = c.WriteConnection("1");
-         
-            IList<string> eachPath = h.Split(';').Reverse().ToList<string>();
-            eachPath.ToList().ForEach(ListPaths.Add);
+            SetConfig(c);
 
-            
         }
 
-        /*protected void NotifyPropertyChanged(string name)
+        public void SetConfig(Connect c)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }*/
+            string set = c.WriteConnection("1");
+            IList<string> eachPath = set.Split('*').Reverse().ToList<string>();
+            if (eachPath.Count == 5)
+            {
+                Output = Output + eachPath[4];
+                Source = Source + eachPath[3];
+                LogName = LogName + eachPath[2];
+                ThumbName = ThumbName + eachPath[1];
+                string lPaths = eachPath[0];
+
+                IList<string> each = lPaths.Split(';').Reverse().ToList<string>();
+                each.ToList().ForEach(ListPaths.Add);
+            }
+        }
 
 
+         /*protected void NotifyPropertyChanged(string name)
+         {
+             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+         }*/
+
+
+        }
     }
-}
+

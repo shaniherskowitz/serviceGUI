@@ -9,10 +9,10 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
-            <TabItem Header="Settings" Grid.Row="1" DataContext="{Binding SettingsViewModel}">
+            <TabItem Header="Settings" Grid.Row="1">
                 <views:Settings/>
             </TabItem>
-            <TabItem Header="Logs" Grid.Row =" 1" DataContext="{Binding LogsViewModel}">
+            <TabItem Header="Logs" Grid.Row =" 1">
                 <views:Logs/>
             </TabItem>
         </TabControl>
