@@ -64,10 +64,9 @@ namespace ServiceGUI
 
             try
             {
-
-                byte[] bb = new byte[100];
+                byte[] bb = new byte[1000];
                 string output = "";
-                int k = stm.Read(bb, 0, 100);
+                int k = stm.Read(bb, 0, 1000);
                 for (int i = 0; i < k; i++)
                     output += Convert.ToChar(bb[i]).ToString();
       
@@ -114,8 +113,8 @@ namespace ServiceGUI
         }
         public void CloseConnction()
         {
-            tcpclnt.Close();
-            stm.Close();
+            if(tcpclnt != null) tcpclnt.Close();
+            if(stm != null)stm.Close();
         }
 
     }

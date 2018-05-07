@@ -10,17 +10,17 @@ namespace ServiceGUI
 {
     class LogModel
     {
+        private Connect c = Connect.Instance;
         public IList<CommandInfo> ListCommands { get; set; }
         public LogModel()
         {
             ListCommands = new List<CommandInfo>();
-            //ListCommands.Add(new CommandInfo(MessageTypeEnum.FAIL.ToString(), "does this work?"));
             ConnectToServer();
         }
 
         public void ConnectToServer()
         {
-            Connect c = Connect.Instance;
+            
             string info = c.WriteConnection("2");
             //var jsonSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
 
@@ -60,6 +60,13 @@ namespace ServiceGUI
                         ListCommands.Add(new CommandInfo(MessageTypeEnum.WARNING.ToString(), each[0]));
                 }
             }
+        }
+
+        public void ReadLogs()
+        {
+            string log = "";
+            log = c.ReadConnection();
+            Console.WriteLine(log);
         }
     }
 }

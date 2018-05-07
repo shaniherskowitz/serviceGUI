@@ -40,18 +40,12 @@ namespace ServiceGUI
 
 
         }
-
-        
-
-        /*private void OnButtonClick(object sender, RoutedEventArgs e)
+        public void Close(object sende, EventArgs args)
         {
-            vm.Remove(urls.SelectedItem.ToString());
+            Connect c = Connect.Instance;
+            c.CloseConnction();
+            Console.WriteLine("Disconnected");
         }
-
-        private void UpdateFrame(TextBlock tb, string path)
-        {
-            tb.Text = "Output Directory: " + path;
-        }*/
 
 
     }
