@@ -61,7 +61,7 @@ namespace ServiceGUI
 
         public string ReadConnection()
         {
-
+            
             try
             {
                 byte[] bb = new byte[1000];
@@ -76,7 +76,7 @@ namespace ServiceGUI
             catch (Exception e)
             {
                 
-                Console.WriteLine("Error..... " + e.StackTrace);
+                //Console.WriteLine("Error..... " + e.StackTrace);
                 return "error";
             }
         }
