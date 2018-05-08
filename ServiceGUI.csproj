@@ -78,6 +78,8 @@
       <DependentUpon>Logs.xaml</DependentUpon>
     </Compile>
     <Compile Include="LogsViewModel.cs" />
+    <Compile Include="MessageEventArgs.cs" />
+    <Compile Include="IReceiver.cs" />
     <Compile Include="SettingsModel.cs" />
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="Connect.cs" />

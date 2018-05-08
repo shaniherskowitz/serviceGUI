@@ -15,8 +15,10 @@ namespace ServiceGUI
         private Stream stm;
         private TcpClient tcpclnt;
         private ASCIIEncoding asen;
+        public string closeHandler;
         public bool connected = false;
         private object lockObj = new object();
+        public event EventHandler<MessageEventArgs> MessageRecieved;
 
         public static Connect Instance
         {
@@ -29,6 +31,10 @@ namespace ServiceGUI
                 }
                 return instance;
             }
+        }
+        public void  SubscribeToMessage(IReceiver receiver)
+        {
+            MessageRecieved += receiver.Subscribe;
         }
 
         private Connect()
@@ -61,23 +67,45 @@ namespace ServiceGUI
 
         public string ReadConnection()
         {
-            
+            while (true)
+            {
+                try
+                {
+                    byte[] bb = new byte[1000];
+                    string output = "";
+
+                    int k = stm.Read(bb, 0, 1000);
+                    for (int i = 0; i < k; i++)
+                        output += Convert.ToChar(bb[i]).ToString();
+
+                    if (output[0] == '1') MessageRecieved?.Invoke(this, new MessageEventArgs(output, "Log"));
+                    else if (output[0] == '2') MessageRecieved?.Invoke(this, new MessageEventArgs(output, "Settings"));
+                    else MessageRecieved?.Invoke(this, new MessageEventArgs(output, "Close"));
+                    
+                }
+
+                catch (Exception e)
+                {
+                    //Console.WriteLine("Error..... " + e.StackTrace);
+                    return "error";
+                }
+            }
+        }
+
+        public void Write(string path)
+        {
             try
             {
-                byte[] bb = new byte[1000];
-                string output = "";
-                int k = stm.Read(bb, 0, 1000);
-                for (int i = 0; i < k; i++)
-                    output += Convert.ToChar(bb[i]).ToString();
-      
-                return output;
-            }
+                byte[] ba = asen.GetBytes(path);
+                Console.WriteLine("Transmitting.....");
 
-            catch (Exception e)
-            {
-                
-                //Console.WriteLine("Error..... " + e.StackTrace);
-                return "error";
+                stm.Write(ba, 0, ba.Length);
+            }
+            catch(Exception e)
+                {
+                Console.WriteLine("Error..... " + e.StackTrace);
+
+                return;
             }
         }
         public string WriteConnection(string path)
@@ -94,9 +122,12 @@ namespace ServiceGUI
 
                     byte[] bb = new byte[1000];
                     string output = "";
+
                     int k = stm.Read(bb, 0, 1000);
                     for (int i = 0; i < k; i++)
                         output += Convert.ToChar(bb[i]).ToString();
+
+
                     return output;
 
 
@@ -109,6 +140,7 @@ namespace ServiceGUI
                     return "error";
                 }
             }
+            
 
         }
         public void CloseConnction()

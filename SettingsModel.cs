@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceGUI
 {
-    class SettingsModel : INotifyPropertyChanged
+    class SettingsModel : INotifyPropertyChanged, IReceiver
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public string Output { get; set; }
@@ -34,11 +34,13 @@ namespace ServiceGUI
             ThumbName = "Thumbnail Name: ";
             ListP = new ObservableCollection<Object>();
             ConnectToServer(); 
+            
         }
 
         public void ConnectToServer()
         {
             Connect c = Connect.Instance;
+            c.SubscribeToMessage(this);
             SetConfig(c);
 
         }
@@ -66,7 +68,15 @@ namespace ServiceGUI
              PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
          }
 
+        public void Subscribe(object sender, MessageEventArgs args)
+        {
+            string msg = args.message.Substring(1);
+            if (args.receiver == "Settings")
+            {
 
+                ListPaths.Remove(msg);
+            }
         }
+    }
     }
 

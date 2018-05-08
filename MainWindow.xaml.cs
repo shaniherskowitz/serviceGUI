@@ -30,7 +30,7 @@ namespace ServiceGUI
 
             InitializeComponent();
             this.DataContext = new ViewModel();
-           
+            
 
 
 

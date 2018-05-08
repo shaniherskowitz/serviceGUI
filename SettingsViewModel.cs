@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -64,7 +65,15 @@ namespace ServiceGUI
 
         private void OnRemove(Object s)
         {
-            sm.ListPaths.Remove(SelectedItem.ToString());
+            Connect c = Connect.Instance;
+            c.Write("5," + SelectedItem.ToString());
+            string check = null;
+            while (check == null) {
+                check = c.closeHandler;
+                c.closeHandler = null;
+            }
+            Console.WriteLine(check);
+            
         }
 
         public ICommand RemoveCommand { get; private set; }

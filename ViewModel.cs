@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -23,6 +24,9 @@ namespace ServiceGUI
              Color1 = new SolidColorBrush(Color.FromRgb(249, 249, 209));
              else Color1 = new SolidColorBrush(Color.FromRgb(228, 224, 229));
 
+             Thread t = new Thread(() => c.ReadConnection());
+             t.Start();
+            
         }
       
     }

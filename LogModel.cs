@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace ServiceGUI
 {
-    class LogModel
+    class LogModel : IReceiver
     {
         private Connect c = Connect.Instance;
         private object lockObj = new object();
@@ -20,6 +20,7 @@ namespace ServiceGUI
             ListCommands = new List<CommandInfo>();
             ConnectToServer();
             BindingOperations.EnableCollectionSynchronization(ListCommands, lockObj);
+            c.SubscribeToMessage(this);
         }
 
         public void ConnectToServer()
@@ -47,17 +48,18 @@ namespace ServiceGUI
                     }
                 }
             }
-            Thread t = new Thread(() => ReadLogs(ListCommands));
-            t.Start();
+            //Thread t = new Thread(() => ReadLogs(ListCommands));
+           // t.Start();
             
         }
 
-        public void ReadLogs(IList<CommandInfo> commands)
+       /* public void ReadLogs(IList<CommandInfo> commands)
         {
             string log = "";
             while (log != "error")
             {
                 log = c.ReadConnection();
+                if (log == "No Log") continue;
                 IList<string> each = log.Split(',').Reverse().ToList<string>();
                 if (each.Count == 2)
                 {
@@ -68,6 +70,25 @@ namespace ServiceGUI
                     
                 }
             }
+        }*/
+
+        public void Subscribe(object sender, MessageEventArgs args)
+        {
+    
+            if (args.receiver == "Settings") return;
+            if (args.receiver == "Log")
+            {
+                string msg = args.message.Substring(1);
+                IList<string> each = msg.Split(',').Reverse().ToList<string>();
+                if (each.Count == 2)
+                {
+
+                    ListCommands.Add(new CommandInfo(each[1], each[0]));
+
+
+                }
+            }
+           
         }
     }
 }
