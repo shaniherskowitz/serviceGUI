@@ -48,9 +48,11 @@ namespace ServiceGUI
                     }
                 }
             }
+            Thread t = new Thread(() => c.ReadConnection());
+            t.Start();
             //Thread t = new Thread(() => ReadLogs(ListCommands));
-           // t.Start();
-            
+            // t.Start();
+
         }
 
        /* public void ReadLogs(IList<CommandInfo> commands)

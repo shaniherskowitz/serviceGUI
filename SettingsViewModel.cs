@@ -67,12 +67,7 @@ namespace ServiceGUI
         {
             Connect c = Connect.Instance;
             c.Write("5," + SelectedItem.ToString());
-            string check = null;
-            while (check == null) {
-                check = c.closeHandler;
-                c.closeHandler = null;
-            }
-            Console.WriteLine(check);
+            
             
         }
 

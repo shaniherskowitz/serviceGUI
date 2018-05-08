@@ -24,8 +24,6 @@ namespace ServiceGUI
              Color1 = new SolidColorBrush(Color.FromRgb(249, 249, 209));
              else Color1 = new SolidColorBrush(Color.FromRgb(228, 224, 229));
 
-             Thread t = new Thread(() => c.ReadConnection());
-             t.Start();
             
         }
       

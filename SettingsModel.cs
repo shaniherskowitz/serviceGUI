@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace ServiceGUI
 {
@@ -13,6 +14,9 @@ namespace ServiceGUI
         public event PropertyChangedEventHandler PropertyChanged;
         public string Output { get; set; }
         private ObservableCollection<Object> ListP;
+        private object lockObj = new object();
+
+
 
         public ObservableCollection<Object> ListPaths { 
            get { return ListP; } 
@@ -33,6 +37,7 @@ namespace ServiceGUI
             LogName = "Log Name: ";
             ThumbName = "Thumbnail Name: ";
             ListP = new ObservableCollection<Object>();
+            BindingOperations.EnableCollectionSynchronization(ListP, lockObj);
             ConnectToServer(); 
             
         }

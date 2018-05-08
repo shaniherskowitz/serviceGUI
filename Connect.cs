@@ -73,10 +73,11 @@ namespace ServiceGUI
                 {
                     byte[] bb = new byte[1000];
                     string output = "";
-
+                    
                     int k = stm.Read(bb, 0, 1000);
                     for (int i = 0; i < k; i++)
-                        output += Convert.ToChar(bb[i]).ToString();
+                         output += Convert.ToChar(bb[i]).ToString();
+                    
 
                     if (output[0] == '1') MessageRecieved?.Invoke(this, new MessageEventArgs(output, "Log"));
                     else if (output[0] == '2') MessageRecieved?.Invoke(this, new MessageEventArgs(output, "Settings"));
@@ -98,8 +99,10 @@ namespace ServiceGUI
             {
                 byte[] ba = asen.GetBytes(path);
                 Console.WriteLine("Transmitting.....");
-
-                stm.Write(ba, 0, ba.Length);
+                lock (lockObj)
+                {
+                    stm.Write(ba, 0, ba.Length);
+                }
             }
             catch(Exception e)
                 {
