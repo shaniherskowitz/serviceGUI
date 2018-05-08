@@ -11,19 +11,42 @@ using Microsoft.Practices.Prism.Commands;
 
 namespace ServiceGUI
 {
-    class SettingsViewModel 
+    class SettingsViewModel
     {
-       
-        //public ICommand RemoveCommand { get; private set; }
         private SettingsModel sm;
-        
+        public event PropertyChangedEventHandler PropertyChanges;
+        private object SelectedItems;
 
         public SettingsViewModel()
         {
-            //this.RemoveCommand = new DelegateCommand<object>(this.OnRemove, this.CanRemove);
-
             this.sm = new SettingsModel();
-            
+            this.RemoveCommand = new DelegateCommand<object>(this.OnRemove, this.CanRemove);
+            PropertyChanges += RemoveCommandPropertyChanged;
+            sm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+                NotifyPropertyChanged(e.PropertyName);
+            };
+        }
+
+        public Object SelectedItem
+        {
+            get { return SelectedItems; }
+            set
+            {
+                this.SelectedItems = value;
+                NotifyPropertyChanged("SelectedItem");
+            }
+        }
+
+        public ObservableCollection<Object> ListPaths
+        {
+            get { return sm.ListPaths; }
+            set { sm.ListPaths = value; }
+        }
+
+        private void RemoveCommandPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var command = this.RemoveCommand as DelegateCommand<object>;
+            command.RaiseCanExecuteChanged();
         }
 
         public SettingsModel Sm
@@ -32,26 +55,27 @@ namespace ServiceGUI
             set { this.sm = value; }
         }
 
-        private void OnButtonClick(object sender, RoutedEventArgs e)
+        protected void NotifyPropertyChanged(string name)
         {
-            
+            PropertyChanges?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        /*public void Remove(string path)
-        {
-            if (path != null) ListPaths.Remove(path);
-        }*/
+        public SettingsViewModel settingsViewModel { get; set; }
 
-        private void OnRemove(object obj)
+        private void OnRemove(Object s)
         {
-
+            sm.ListPaths.Remove(SelectedItem.ToString());
         }
 
-        private bool CanRemove(object obj)
+        public ICommand RemoveCommand { get; private set; }
+
+        private bool CanRemove(Object s)
         {
-            return true;
+            if (SelectedItem != null) return true;
+            else return false;
         }
 
 
     }
 }
+

@@ -26,25 +26,7 @@ namespace ServiceGUI
         {
             
             string info = c.WriteConnection("2");
-            //var jsonSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-
-            //info = JsonConvert.DeserializeObject<String>(info);
-
-
-            /* EventRecord eventRecord;
-
-             while ((eventRecord = reader.ReadEvent()) != null)
-             {
-
-                 int x = eventRecord.Id;
-
-                 if (x == (int)MessageTypeEnum.INFO)
-                     ListCommands.Add(new CommandInfo(MessageTypeEnum.INFO.ToString(), eventRecord.FormatDescription()));
-                 if (x == (int)MessageTypeEnum.FAIL)
-                     ListCommands.Add(new CommandInfo(MessageTypeEnum.FAIL.ToString(), eventRecord.FormatDescription()));
-                 if (x == (int)MessageTypeEnum.WARNING)
-                     ListCommands.Add(new CommandInfo(MessageTypeEnum.WARNING.ToString(), eventRecord.FormatDescription()));
-             }*/
+        
 
             IList<string> eachPath = info.Split('*').Reverse().ToList<string>();
 
@@ -90,3 +72,22 @@ namespace ServiceGUI
     }
 }
 
+//var jsonSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+//info = JsonConvert.DeserializeObject<String>(info);
+
+
+/* EventRecord eventRecord;
+
+ while ((eventRecord = reader.ReadEvent()) != null)
+ {
+
+     int x = eventRecord.Id;
+
+     if (x == (int)MessageTypeEnum.INFO)
+         ListCommands.Add(new CommandInfo(MessageTypeEnum.INFO.ToString(), eventRecord.FormatDescription()));
+     if (x == (int)MessageTypeEnum.FAIL)
+         ListCommands.Add(new CommandInfo(MessageTypeEnum.FAIL.ToString(), eventRecord.FormatDescription()));
+     if (x == (int)MessageTypeEnum.WARNING)
+         ListCommands.Add(new CommandInfo(MessageTypeEnum.WARNING.ToString(), eventRecord.FormatDescription()));
+ }*/

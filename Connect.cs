@@ -15,7 +15,7 @@ namespace ServiceGUI
         private Stream stm;
         private TcpClient tcpclnt;
         private ASCIIEncoding asen;
-        private bool connected = false;
+        public bool connected = false;
         private object lockObj = new object();
 
         public static Connect Instance

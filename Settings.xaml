@@ -12,9 +12,9 @@
             <TextBlock x:Name="TB2" Text="{Binding Sm.Source}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
             <TextBlock x:Name="TB3" Text="{Binding Sm.LogName}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
             <TextBlock x:Name="TB4" Text="{Binding Sm.ThumbName}" FontSize="20" Width="761" HorizontalAlignment="Left" Margin="0, 0, 0 10"/>
-            <Button x:Name ="Remove" Content="Remove" Background="LightGoldenrodYellow" FontSize="20" Width="782" HorizontalAlignment="Left" Margin="0, 0, 0, 0" />
+            <Button x:Name ="Remove" Content="Remove" Background="LightGoldenrodYellow" FontSize="20" Width="782" HorizontalAlignment="Left" Margin="0, 0, 0, 0" Command="{Binding Path=RemoveCommand}" />
 
-            <ListBox x:Name="urls" Height="144" HorizontalAlignment="Left" Width="782" ItemsSource="{Binding Sm.ListPaths}">
+            <ListBox x:Name="urls" Height="144" HorizontalAlignment="Left" Width="782" ItemsSource="{Binding Sm.ListPaths}" SelectedItem="{Binding SelectedItem}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

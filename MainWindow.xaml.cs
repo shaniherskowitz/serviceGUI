@@ -30,13 +30,8 @@ namespace ServiceGUI
 
             InitializeComponent();
             this.DataContext = new ViewModel();
-            
+           
 
-            /*UpdateFrame(TB1, "shani");
-            urls.ItemsSource = vm.ListPaths;
-            logInfo.ItemsSource = vm.ListCommands;
-            Model m = new Model(vm);
-            m.ConnectToServer();*/
 
 
         }

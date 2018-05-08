@@ -7,8 +7,9 @@
         xmlns:views ="clr-namespace:ServiceGUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Closed = "Close">
-    <Grid>
+        Closed = "Close"
+        >
+    <Grid Name="mainGrid" Background ="{Binding Color1}">
         <TabControl>
             <TabItem Header="Settings" Grid.Row="1">
                 <views:Settings/>

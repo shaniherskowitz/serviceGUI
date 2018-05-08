@@ -8,14 +8,23 @@ using System.Threading.Tasks;
 
 namespace ServiceGUI
 {
-    class SettingsModel
+    class SettingsModel : INotifyPropertyChanged
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         public string Output { get; set; }
-        public ObservableCollection<string> ListPaths { get; set; }
+        private ObservableCollection<Object> ListP;
+
+        public ObservableCollection<Object> ListPaths { 
+           get { return ListP; } 
+           set {
+                NotifyPropertyChanged("ListPaths"); 
+            } 
+        }
+        
         public string Source { get; set; }
         public string LogName { get; set; }
         public string ThumbName { get; set; }
+
 
         public SettingsModel()
         {
@@ -23,10 +32,9 @@ namespace ServiceGUI
             Source = "Sourc Name: ";
             LogName = "Log Name: ";
             ThumbName = "Thumbnail Name: ";
-            ListPaths = new ObservableCollection<string>();
-            ConnectToServer();
+            ListP = new ObservableCollection<Object>();
+            ConnectToServer(); 
         }
-
 
         public void ConnectToServer()
         {
@@ -34,7 +42,7 @@ namespace ServiceGUI
             SetConfig(c);
 
         }
-
+        
         public void SetConfig(Connect c)
         {
             string set = c.WriteConnection("1");
@@ -51,12 +59,12 @@ namespace ServiceGUI
                 each.ToList().ForEach(ListPaths.Add);
             }
         }
-
-
-         /*protected void NotifyPropertyChanged(string name)
+        
+         protected void NotifyPropertyChanged(string name)
          {
+             if(PropertyChanged != null)
              PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-         }*/
+         }
 
 
         }
