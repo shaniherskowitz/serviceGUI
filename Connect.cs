@@ -16,7 +16,6 @@ namespace ServiceGUI
         private Stream stm;
         private TcpClient tcpclnt;
         private ASCIIEncoding asen;
-        public string closeHandler;
         public bool connected = false;
         private object lockObj = new object();
         public event EventHandler<MessageEventArgs> MessageRecieved;
@@ -104,7 +103,7 @@ namespace ServiceGUI
                 {
                     stm.Write(ba, 0, ba.Length);
                 }
-                Thread.Sleep(5);
+               
             }
             catch(Exception e)
                 {
