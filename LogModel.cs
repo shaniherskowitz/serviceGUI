@@ -18,17 +18,18 @@ namespace ServiceGUI
         public LogModel()
         {
             ListCommands = new List<CommandInfo>();
-            ConnectToServer();
             BindingOperations.EnableCollectionSynchronization(ListCommands, lockObj);
             c.SubscribeToMessage(this);
+            ConnectToServer();
+            
         }
 
         public void ConnectToServer()
         {
-            
+            Console.WriteLine("got to log");
             string info = c.WriteConnection("2");
-        
 
+            Console.WriteLine("read " + info);
             IList<string> eachPath = info.Split('*').Reverse().ToList<string>();
 
             for (int i = 0; i < eachPath.Count; i++)
@@ -50,8 +51,7 @@ namespace ServiceGUI
             }
             Thread t = new Thread(() => c.ReadConnection());
             t.Start();
-            //Thread t = new Thread(() => ReadLogs(ListCommands));
-            // t.Start();
+            
 
         }
 

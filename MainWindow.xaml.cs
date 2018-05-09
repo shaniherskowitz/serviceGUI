@@ -38,6 +38,7 @@ namespace ServiceGUI
         public void Close(object sende, EventArgs args)
         {
             Connect c = Connect.Instance;
+            c.Write("3");
             c.CloseConnction();
             Console.WriteLine("Disconnected");
         }

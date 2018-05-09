@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ServiceGUI
@@ -103,6 +104,7 @@ namespace ServiceGUI
                 {
                     stm.Write(ba, 0, ba.Length);
                 }
+                Thread.Sleep(5);
             }
             catch(Exception e)
                 {
