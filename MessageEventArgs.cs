@@ -12,6 +12,11 @@ namespace ServiceGUI
 
         public string receiver;
 
+        /// <summary>
+        /// Creates the messageEventArsg
+        /// </summary>
+        /// <param string="message"> The message from the server</param>
+        /// <param string="reciever">who to send the message to - log or settings</param>
         public MessageEventArgs(string message, string receiver)
         {
             this.message = message;

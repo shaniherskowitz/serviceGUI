@@ -20,6 +20,9 @@ namespace ServiceGUI
     /// </summary>
     public partial class Logs : UserControl
     {
+        /// <summary>
+        /// Creates the log
+        /// </summary>
         public Logs()
         {
             InitializeComponent();

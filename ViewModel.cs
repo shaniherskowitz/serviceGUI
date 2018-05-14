@@ -15,8 +15,16 @@ namespace ServiceGUI
 
     class ViewModel
     {
+         /// <summary>
+        /// Gets and sets the color
+        /// </summary>
+   
         public SolidColorBrush Color1 { get; set; }
 
+         /// <summary>
+        /// Creates the viewmodel
+        /// </summary>
+     
         public ViewModel()
         {
              Connect c = Connect.Instance;

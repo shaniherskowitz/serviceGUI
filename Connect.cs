@@ -21,6 +21,10 @@ namespace ServiceGUI
         private object lockObj = new object();
         public event EventHandler<MessageEventArgs> MessageRecieved;
 
+        /// <summary>
+        /// Creates an instance of the connect class
+        /// </summary>
+        /// <return and instance of connect></return>
         public static Connect Instance
         {
             get
@@ -33,11 +37,20 @@ namespace ServiceGUI
                 return instance;
             }
         }
+
+        /// <summary>
+        /// Subscribe to the event
+        /// </summary>
+        /// <param Ireceiver="receiver"></param>
         public void  SubscribeToMessage(IReceiver receiver)
         {
             MessageRecieved += receiver.Subscribe;
         }
 
+        
+        /// <summary>
+        /// Connects to ther sever
+        /// </summary>
         private Connect()
         {
 
@@ -65,7 +78,10 @@ namespace ServiceGUI
             }
         }
 
-
+        /// <summary>
+        /// Read from the server
+        ///invokes an event based in the output
+        /// </summary>
         public string ReadConnection()
         {
             while (true)
@@ -94,6 +110,10 @@ namespace ServiceGUI
             }
         }
 
+        /// <summary>
+        /// Writes to the server
+        /// </summary>
+
         public void Write(string path)
         {
             try
@@ -113,6 +133,12 @@ namespace ServiceGUI
                 return;
             }
         }
+
+        /// <summary>
+        /// Creates a write conenection with the server
+        /// </summary>
+        /// <param string="path"></param>
+        /// <return the ouput string></return>
         public string WriteConnection(string path)
         {
             lock (lockObj)
@@ -148,6 +174,10 @@ namespace ServiceGUI
             
 
         }
+        
+        /// <summary>
+        /// Closes the connection
+        /// </summary>
         public void CloseConnction()
         {
             if(tcpclnt != null) tcpclnt.Close();

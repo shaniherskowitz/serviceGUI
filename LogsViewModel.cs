@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace ServiceGUI
 {
+        /// <summary>
+        /// Creates the messageTypeEnum
+        /// </summary>
     public enum MessageTypeEnum : int
     {
         INFO,
@@ -14,6 +17,9 @@ namespace ServiceGUI
         FAIL
     }
 
+         /// <summary>
+        /// Creates the commadnInfo
+        /// </summary>
     public class CommandInfo
     {
         public string ID { get; set; }
@@ -32,10 +38,18 @@ namespace ServiceGUI
         private LogModel log;
         
 
+        /// <summary>
+        /// Creates the logViewModl
+        /// </summary>
         public LogsViewModel()
         {
             log = new LogModel();
         }
+
+        /// <summary>
+        ///Gets the logmodel
+        /// </summary>
+        /// <return the log></return>
         public LogModel Log
         {
             get { return this.log; }

@@ -20,6 +20,9 @@ namespace ServiceGUI
     /// </summary>
     public partial class Settings : UserControl
     {
+        /// <summary>
+        /// creates the settings
+        /// </summary>
         public Settings()
         {
             InitializeComponent();

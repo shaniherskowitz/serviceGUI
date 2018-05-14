@@ -17,7 +17,11 @@ namespace ServiceGUI
         private object lockObj = new object();
 
 
-
+         /// <summary>
+        /// Test value and modify it.
+        /// </summary>
+        /// <param object="sender"></param>
+        /// <param propertychangedeventargs="e"></param>
         public ObservableCollection<Object> ListPaths { 
            get { return ListP; } 
            set {
@@ -25,11 +29,24 @@ namespace ServiceGUI
             } 
         }
         
+        /// <summary>
+        /// Gets and sets the string source
+        /// </summary>
         public string Source { get; set; }
+
+        /// <summary>
+        /// Gets and sets the string logname
+        /// </summary>
         public string LogName { get; set; }
+
+         /// <summary>
+        /// Gets and sets the string thumbname
+        /// </summary>
         public string ThumbName { get; set; }
 
-
+         /// <summary>
+        /// Creates the setting model
+        /// </summary>
         public SettingsModel()
         {
             Output = "Output Directory: ";
@@ -42,6 +59,9 @@ namespace ServiceGUI
             
         }
 
+         /// <summary>
+        /// Connects to the server
+        /// </summary>
         public void ConnectToServer()
         {
             Connect c = Connect.Instance;
@@ -50,6 +70,10 @@ namespace ServiceGUI
 
         }
         
+        /// <summary>
+        /// Sets the app config - writes and cplits the returned string
+        /// </summary>
+        /// <param connect="c"></param>
         public void SetConfig(Connect c)
         {
             string set = c.WriteConnection("1");
@@ -67,12 +91,22 @@ namespace ServiceGUI
             }
         }
         
+        /// <summary>
+        /// Notifies that the property has changed
+        /// </summary>
+        /// <param string="name"></param>
          protected void NotifyPropertyChanged(string name)
          {
              if(PropertyChanged != null)
              PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
          }
 
+        /// <summary>
+        /// Subscribes to the event handler
+        /// Removes from the list
+        /// </summary>
+        /// <param object="sender"></param>
+        /// <param MessageEventArgs="args"></param>
         public void Subscribe(object sender, MessageEventArgs args)
         {
             string msg = args.message.Substring(1);

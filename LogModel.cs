@@ -15,6 +15,10 @@ namespace ServiceGUI
         private Connect c = Connect.Instance;
         private object lockObj = new object();
         public IList<CommandInfo> ListCommands { get; set; }
+
+        /// <summary>
+        /// Creates the log model
+        /// </summary>
         public LogModel()
         {
             ListCommands = new List<CommandInfo>();
@@ -24,6 +28,10 @@ namespace ServiceGUI
             
         }
 
+        /// <summary>
+        /// Connects to the server and gets the logs 
+        /// Adds the command according to the message enum
+        /// </summary>
         public void ConnectToServer()
         {
             Console.WriteLine("got to log");
@@ -49,31 +57,38 @@ namespace ServiceGUI
                     }
                 }
             }
+            //creates a new thread to always be listening for connection
             Thread t = new Thread(() => c.ReadConnection());
             t.Start();
             
 
         }
 
-       /* public void ReadLogs(IList<CommandInfo> commands)
-        {
-            string log = "";
-            while (log != "error")
-            {
-                log = c.ReadConnection();
-                if (log == "No Log") continue;
-                IList<string> each = log.Split(',').Reverse().ToList<string>();
-                if (each.Count == 2)
-                {
-                    lock (lockObj)
-                    {
-                        commands.Add(new CommandInfo(each[1], each[0]));
-                    }
-                    
-                }
-            }
-        }*/
+        /* public void ReadLogs(IList<CommandInfo> commands)
+         {
+             string log = "";
+             while (log != "error")
+             {
+                 log = c.ReadConnection();
+                 if (log == "No Log") continue;
+                 IList<string> each = log.Split(',').Reverse().ToList<string>();
+                 if (each.Count == 2)
+                 {
+                     lock (lockObj)
+                     {
+                         commands.Add(new CommandInfo(each[1], each[0]));
+                     }
 
+                 }
+             }
+         }*/
+
+        /// <summary>
+        /// Subscribes to the event as the log 
+        /// splits to string and adds to the commandinfo
+        /// </summary>
+        /// <param object="sender"></param>
+        /// <param MessageEventArgs="args"></param>
         public void Subscribe(object sender, MessageEventArgs args)
         {
     

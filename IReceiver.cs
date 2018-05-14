@@ -8,6 +8,11 @@ namespace ServiceGUI
 {
     interface IReceiver
     {
+        /// <summary>
+        /// Subscribes to the connect event
+        /// </summary>
+        /// <param object="sender"></param>
+        /// <param MessageEventArgs="args"></param>
         void Subscribe(object sender, MessageEventArgs args);
     }
 }

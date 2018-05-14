@@ -24,17 +24,22 @@ namespace ServiceGUI
     {
         
         
-
+        /// <summary>
+        /// Creates the mainwindow
+        /// </summary>
         public MainWindow()
         {
 
             InitializeComponent();
             this.DataContext = new ViewModel();
             
-
-
-
         }
+
+        /// <summary>
+        /// Closes the connection
+        /// </summary>
+        /// <param object="sende"></param>
+        /// <param EventArgs="args"></param>
         public void Close(object sende, EventArgs args)
         {
             Connect c = Connect.Instance;
