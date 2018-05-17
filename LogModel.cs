@@ -1,32 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.ComponentModel;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using Newtonsoft.Json;
 
 namespace ServiceGUI
 {
-    class LogModel : IReceiver
+    class LogModel : INotifyPropertyChanged, IReceiver
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private Connect c = Connect.Instance;
         private object lockObj = new object();
-        public IList<CommandInfo> ListCommands { get; set; }
+        public ObservableCollection<CommandInfo> ListCommand; 
 
         /// <summary>
         /// Creates the log model
         /// </summary>
         public LogModel()
         {
-            ListCommands = new List<CommandInfo>();
+            ListCommands = new ObservableCollection<CommandInfo>();
             BindingOperations.EnableCollectionSynchronization(ListCommands, lockObj);
             c.SubscribeToMessage(this);
             ConnectToServer();
             
         }
+
+        /// <summary>
+        ///Gets and sets the list of logs
+        /// </summary>
+        /// <return the listCommand></return>
+          public ObservableCollection<CommandInfo> ListCommands
+        {
+            get { return ListCommand; }
+            set
+            {
+                this.ListCommand = value;
+                NotifyPropertyChanged("ListCommands");
+            }
+        }
+
+        /// <summary>
+        ///Invokesthe property changed
+        /// </summary>
+        /// <Param string: name></param>
+         protected void NotifyPropertyChanged(string name)
+      {
+         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+      }
 
         /// <summary>
         /// Connects to the server and gets the logs 
